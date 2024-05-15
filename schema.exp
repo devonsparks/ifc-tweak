@@ -5702,17 +5702,17 @@ END_ENTITY;
 
 ENTITY IfcDerivedUnitElement;
 	Unit : IfcNamedUnit;
-	Exponent : INTEGER;
+	Exponent : IfcInteger;
 END_ENTITY;
 
 ENTITY IfcDimensionalExponents;
-	LengthExponent : INTEGER;
-	MassExponent : INTEGER;
-	TimeExponent : INTEGER;
-	ElectricCurrentExponent : INTEGER;
-	ThermodynamicTemperatureExponent : INTEGER;
-	AmountOfSubstanceExponent : INTEGER;
-	LuminousIntensityExponent : INTEGER;
+	LengthExponent : IfcInteger;
+	MassExponent : IfcInteger;
+	TimeExponent : IfcInteger;
+	ElectricCurrentExponent : IfcInteger;
+	ThermodynamicTemperatureExponent : IfcInteger;
+	AmountOfSubstanceExponent : IfcInteger;
+	LuminousIntensityExponent : IfcInteger;
 END_ENTITY;
 
 ENTITY IfcDirection
