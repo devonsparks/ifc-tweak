@@ -12,9 +12,10 @@ The repositories branches follow a common structure, with the `schema.exp` file 
 - `future*` branches identify an an [octopus merge](https://www.freblogg.com/git-octopus-merge) of one or more `tweak` branches.
 
 Some low-hanging fruit for IFC `tweaks` include:
-- Replacing IfcLogical with OPTIONAL IfcBoolean [#92](https://github.com/buildingSMART/NextGen-IFC/issues/92) - `tweak/nextgen-92`
+- Replacing IfcLogical with OPTIONAL IfcBoolean [#92](https://github.com/buildingSMART/NextGen-IFC/issues/92) - [compare changes](https://github.com/devonsparks/ifc-tweak/compare/main...tweak/nextgen-92)
+- Fixing inconsistent use of IfcInteger [#80](https://github.com/buildingSMART/NextGen-IFC/issues/80) - [compare changes](https://github.com/devonsparks/ifc-tweak/compare/main...tweak/nextgen-80)
 - Removing LIST OF LISTS [#91](https://github.com/buildingSMART/NextGen-IFC/issues/91)
-- Fixing inconsistent use of IfcInteger [#80](https://github.com/buildingSMART/NextGen-IFC/issues/80)
+
 - Replacing ARRAYS with LISTS [#21](https://github.com/buildingSMART/NextGen-IFC/issues/21)
 - Replacing STRING types with Where Rules with Enumerations [#82](https://github.com/buildingSMART/NextGen-IFC/issues/82)
 
