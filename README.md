@@ -17,3 +17,5 @@ Some low-hanging fruit for IFC `tweaks` include:
 - Fixing inconsistent use of IfcInteger [#80](https://github.com/buildingSMART/NextGen-IFC/issues/80)
 - Replacing ARRAYS with LISTS [#21](https://github.com/buildingSMART/NextGen-IFC/issues/21)
 - Replacing STRING types with Where Rules with Enumerations [#82](https://github.com/buildingSMART/NextGen-IFC/issues/82)
+
+Addressing and merging simple tweaks makes larger changes easier and more practical to tackle. 
