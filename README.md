@@ -6,7 +6,7 @@ Discussions around the next major scheme version for [Industry Foundation Classe
 `ifc-tweak` is a demonstration that meaningful evolution of the IFC schema can occur through incremental changes ("tweaks") to the existing EXPRESS schema. Rather than starting from scratch, `ifc-tweak` start from the [existing IFC release](https://standards.buildingsmart.org/IFC/RELEASE/IFC4_3/HTML/IFC4X3_ADD2.exp), and imposes as series of small, incremental "tweaks" (represented as Github feature branches) to streamline its structure. Each change on its own doesn't "fix IFC", but when layered on top of each other shows how a pragmatic IFC5 can evolve while respecting the needs for continuity with existing data. 
 
 
-The repositories branches follow a common structure, with the `schema.exp` file at its center:
+The repository's branches follow a common structure, with the `schema.exp` file at its center:
 - `main` always tracks the current official IFC release (i.e., `schema.exp` represents IFC 4.3)
 - `tweak/<descriptor>` branches identify a particular tweak. Tweaks adopted from the BuildingSmart [NextGen-IFC](https://github.com/buildingSMART/NextGen-IFC/issues) are specifically named according to `tweak/nextgen-<issue-number>`. 
 - `future*` branches identify an an [octopus merge](https://www.freblogg.com/git-octopus-merge) of one or more `tweak` branches.
