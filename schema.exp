@@ -193,9 +193,6 @@ END_TYPE;
 TYPE IfcLinearVelocityMeasure = REAL;
 END_TYPE;
 
-TYPE IfcLogical = LOGICAL;
-END_TYPE;
-
 TYPE IfcLuminousFluxMeasure = REAL;
 END_TYPE;
 
@@ -3646,7 +3643,6 @@ TYPE IfcSimpleValue = SELECT
 	,IfcIdentifier
 	,IfcInteger
 	,IfcLabel
-	,IfcLogical
 	,IfcPositiveInteger
 	,IfcReal
 	,IfcText
@@ -4205,8 +4201,8 @@ ENTITY IfcBSplineCurve
 	Degree : IfcInteger;
 	ControlPointsList : LIST [2:?] OF IfcCartesianPoint;
 	CurveForm : IfcBSplineCurveForm;
-	ClosedCurve : IfcLogical;
-	SelfIntersect : IfcLogical;
+	ClosedCurve : OPTIONAL IfcBoolean;
+	SelfIntersect : OPTIONAL IfcBoolean;
  DERIVE
 	 UpperIndexOnControlPoints : IfcInteger := (SIZEOF(ControlPointsList) - 1);
 	 ControlPoints : ARRAY [0:UpperIndexOnControlPoints] OF IfcCartesianPoint := IfcListToArray(ControlPointsList,0,UpperIndexOnControlPoints);
@@ -4239,9 +4235,9 @@ ENTITY IfcBSplineSurface
 	VDegree : IfcInteger;
 	ControlPointsList : LIST [2:?] OF LIST [2:?] OF IfcCartesianPoint;
 	SurfaceForm : IfcBSplineSurfaceForm;
-	UClosed : IfcLogical;
-	VClosed : IfcLogical;
-	SelfIntersect : IfcLogical;
+	UClosed : OPTIONAL IfcBoolean;
+	VClosed : OPTIONAL IfcBoolean;
+	SelfIntersect : OPTIONAL IfcBoolean;
  DERIVE
 	 UUpper : IfcInteger := SIZEOF(ControlPointsList) - 1;
 	 VUpper : IfcInteger := SIZEOF(ControlPointsList[1]) - 1;
@@ -5052,10 +5048,10 @@ ENTITY IfcCompositeCurve
 	,IfcSegmentedReferenceCurve))
  SUBTYPE OF (IfcBoundedCurve);
 	Segments : LIST [1:?] OF IfcSegment;
-	SelfIntersect : IfcLogical;
+	SelfIntersect : OPTIONAL IfcBoolean;
  DERIVE
 	 NSegments : IfcInteger := SIZEOF(Segments);
-	 ClosedCurve : IfcLogical := Segments[NSegments].Transition <> Discontinuous;
+	 ClosedCurve : OPTIONAL IfcBoolean := Segments[NSegments].Transition <> Discontinuous;
  WHERE
 	CurveContinuous : ((NOT ClosedCurve) AND (SIZEOF(QUERY(Temp <* Segments | Temp.Transition = Discontinuous)) = 1)) OR ((ClosedCurve) AND (SIZEOF(QUERY(Temp <* Segments | Temp.Transition = Discontinuous)) = 0));
 	SameDim : SIZEOF( QUERY( Temp <* Segments | Temp.Dim <> Segments[1].Dim)) = 0;
@@ -7844,7 +7840,7 @@ ENTITY IfcMaterialLayer
  SUBTYPE OF (IfcMaterialDefinition);
 	Material : OPTIONAL IfcMaterial;
 	LayerThickness : IfcNonNegativeLengthMeasure;
-	IsVentilated : OPTIONAL IfcLogical;
+	IsVentilated : OPTIONAL IfcBoolean;
 	Name : OPTIONAL IfcLabel;
 	Description : OPTIONAL IfcText;
 	Category : OPTIONAL IfcLabel;
@@ -8209,7 +8205,7 @@ END_ENTITY;
 ENTITY IfcOffsetCurve2D
  SUBTYPE OF (IfcOffsetCurve);
 	Distance : IfcLengthMeasure;
-	SelfIntersect : IfcLogical;
+	SelfIntersect : OPTIONAL IfcBoolean;
  WHERE
 	DimIs2D : BasisCurve.Dim = 2;
 END_ENTITY;
@@ -8217,7 +8213,7 @@ END_ENTITY;
 ENTITY IfcOffsetCurve3D
  SUBTYPE OF (IfcOffsetCurve);
 	Distance : IfcLengthMeasure;
-	SelfIntersect : IfcLogical;
+	SelfIntersect : OPTIONAL IfcBoolean;
 	RefDirection : IfcDirection;
  WHERE
 	DimIs2D : BasisCurve.Dim = 3;
@@ -8784,9 +8780,9 @@ END_ENTITY;
 
 ENTITY IfcPresentationLayerWithStyle
  SUBTYPE OF (IfcPresentationLayerAssignment);
-	LayerOn : IfcLogical;
-	LayerFrozen : IfcLogical;
-	LayerBlocked : IfcLogical;
+	LayerOn : OPTIONAL IfcBoolean;
+	LayerFrozen : OPTIONAL IfcBoolean;
+	LayerBlocked : OPTIONAL IfcBoolean;
 	LayerStyles : SET [0:?] OF IfcPresentationStyle;
  WHERE
 	ApplicableOnlyToItems : SIZEOF(QUERY(temp <* AssignedItems | (SIZEOF(TYPEOF(temp) * ['IFC4X3_ADD2.IfcGeometricRepresentationItem','IFC4X3_ADD2.IfcMappedItem']) >= 1))) = SIZEOF(AssignedItems);
@@ -9876,7 +9872,7 @@ ENTITY IfcRelInterferesElements
 	RelatedElement : IfcInterferenceSelect;
 	InterferenceGeometry : OPTIONAL IfcConnectionGeometry;
 	InterferenceType : OPTIONAL IfcIdentifier;
-	ImpliedOrder : IfcLogical;
+	ImpliedOrder : OPTIONAL IfcBoolean;
 	InterferenceSpace : OPTIONAL IfcSpatialZone;
  WHERE
 	NoSelfReference : RelatingElement :<>: RelatedElement;
@@ -10379,7 +10375,7 @@ ENTITY IfcShapeAspect;
 	ShapeRepresentations : LIST [1:?] OF IfcShapeModel;
 	Name : OPTIONAL IfcLabel;
 	Description : OPTIONAL IfcText;
-	ProductDefinitional : IfcLogical;
+	ProductDefinitional : OPTIONAL IfcBoolean;
 	PartOfProductDefinitionShape : OPTIONAL IfcProductRepresentationSelect;
  INVERSE
 	HasExternalReferences : SET [0:?] OF IfcExternalReferenceRelationship FOR RelatedResourceObjects;
